@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.Order;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.User;
+import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.enums.OrderStatus;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.repositories.OrderRepository;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.repositories.UserRepository;
 
@@ -29,8 +30,8 @@ public class TestConfig implements CommandLineRunner {
 		User user1 = new User(null, "Izabella", "izabella@gmail.com", "31951213409", "123456");
 		User user2 = new User(null, "Nicolas", "nicolas@gmail.com", "71951213409", "123456");
 		
-		Order order1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), user1); 
-		Order order2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), user2); 
+		Order order1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, user1); 
+		Order order2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, user2); 
 		
 		userRepository.saveAll(Arrays.asList(user1, user2));
 		orderRepository.saveAll(Arrays.asList(order1, order2));
