@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.Category;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.Order;
+import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.OrderItem;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.Product;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.User;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.enums.OrderStatus;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.repositories.CategoryRepository;
+import io.github.dcxrvalho.spring_boot_jpa_workshop.repositories.OrderItemRepository;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.repositories.OrderRepository;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.repositories.ProductRepository;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.repositories.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -67,8 +72,14 @@ public class TestConfig implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(user1, user2));
 		orderRepository.saveAll(Arrays.asList(order1, order2));
-
 		
+		OrderItem orderItem1 = new OrderItem(order1, p1, 2, p1.getPrice()); 
+		OrderItem orderItem2 = new OrderItem(order1, p3, 1, p3.getPrice()); 
+		OrderItem orderItem3 = new OrderItem(order2, p3, 2, p3.getPrice()); 
+		
+		orderItemRepository.saveAll(Arrays.asList(orderItem1));
+		orderItemRepository.saveAll(Arrays.asList(orderItem2));
+		orderItemRepository.saveAll(Arrays.asList(orderItem3));
 	}
 	
 	
