@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.Category;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.Order;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.OrderItem;
+import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.Payment;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.Product;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.User;
 import io.github.dcxrvalho.spring_boot_jpa_workshop.entities.enums.OrderStatus;
@@ -80,6 +81,11 @@ public class TestConfig implements CommandLineRunner {
 		orderItemRepository.saveAll(Arrays.asList(orderItem1));
 		orderItemRepository.saveAll(Arrays.asList(orderItem2));
 		orderItemRepository.saveAll(Arrays.asList(orderItem3));
+		
+		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), order1);
+		order1.setPayment(pay1);
+		
+		orderRepository.saveAll(Arrays.asList(order1));
 	}
 	
 	
